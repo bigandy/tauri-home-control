@@ -1,10 +1,9 @@
 .App {
-  text-align: center;
-  min-height: 100vh;
-  display: grid;
-  place-content: center;
-  background: var(--background, white);
-  color: var(--text-color, black);
+  padding: 0 1em;
+}
+
+h1 {
+  margin: 0;
 }
 
 button {
@@ -12,19 +11,20 @@ button {
   border: 2px solid black;
   padding: 1rem 3rem;
   cursor: pointer;
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
 .buttons {
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 
   button {
     padding: 0.5rem;
+    margin-inline: 0.5rem;
+    width: auto;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: black;
-    --text-color: white;
-  }
+.digits {
+  font-family: monospace;
 }
