@@ -3,7 +3,7 @@ import { Link, RouteProps } from "react-router-dom";
 
 import { ReactComponent as HomeIcon } from "../icons/home.svg";
 
-import { useStore } from "../App";
+import { useStore } from "../store";
 
 const SettingsPage: React.FC<RouteProps> = () => {
   const timerMinutes = useStore((state) => state.timerMinutes);

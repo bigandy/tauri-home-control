@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { useStore } from "../App";
+import { useStore } from "../store";
 
 import { TIME_REDUCTION } from "../utils/constants";
 
@@ -15,7 +15,7 @@ const Time = ({
   handleReset: () => void;
   onTimeEnd: () => void;
 }) => {
-  const timerMinutes = useStore((state) => state.timerMinutes * 1000 * 20);
+  const timerMinutes = useStore((state) => state.timerMinutes * 1000 * 60);
 
   const [count, setCount] = useState(timerMinutes);
 
