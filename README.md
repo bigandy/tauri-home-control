@@ -9,6 +9,6 @@ So far I have added a countdown functionality with fixed 30 minutes time, when t
 - [ ] Toolbar menu icon with dropdown containing the same information (time left, button to start/pause)
 - [ ] Ability to choose music via the Spotify API
 - [ ] Ability to customise the apps that are closed and opened
-- [ ] Customise the time period
+- [x] Customise the time period - Now have a settings page
 - [ ] Auto update of app
 - [ ] Deployment and hosting on Github
