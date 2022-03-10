@@ -15,9 +15,9 @@ const Time = ({
   handleReset: () => void;
   onTimeEnd: () => void;
 }) => {
-  const timerMinutes = useStore((state) => state.timerMinutes * 1000 * 60);
+  const timerMilliseconds = useStore((state) => state.timerMinutes * 1000 * 60);
 
-  const [count, setCount] = useState(timerMinutes);
+  const [count, setCount] = useState(timerMilliseconds);
 
   const decrementTimer = useCallback(
     () => setCount((c) => c - TIME_REDUCTION),
@@ -46,10 +46,10 @@ const Time = ({
 
   useEffect(() => {
     if (reset) {
-      setCount(timerMinutes);
+      setCount(timerMilliseconds);
       handleReset();
     }
-  }, [reset, setCount, handleReset, timerMinutes]);
+  }, [reset, setCount, handleReset, timerMilliseconds]);
 
   return (
     <div className="timer">

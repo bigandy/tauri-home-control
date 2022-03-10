@@ -11,6 +11,7 @@ import { ReactComponent as SettingsIcon } from "../icons/SettingsIcon.svg";
 
 const Homepage: React.FC<RouteProps> = () => {
   const [playing, setPlaying] = useState(false);
+
   const [reset, setReset] = useState(false);
 
   useEffect(() => {
