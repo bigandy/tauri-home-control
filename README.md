@@ -4,6 +4,10 @@ This project was created following the steps on the Tauri [tauri docs site](http
 
 So far I have added a countdown functionality with fixed 30 minutes time, when the time starts it closes a specified list (hard-coded for now) and at the end of the time it opens the list of apps again.
 
+## Dev
+
+Run the `npm run tauri:dev` command to start tauri development.
+
 ## Future Tasks
 
 - [ ] Toolbar menu icon with dropdown containing the same information (time left, button to start/pause)
