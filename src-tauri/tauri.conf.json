@@ -28,13 +28,11 @@
       "shortDescription": "",
       "longDescription": "",
       "deb": {
-        "depends": [],
-        "useBootstrapper": false
+        "depends": []
       },
       "macOS": {
         "frameworks": [],
         "minimumSystemVersion": "",
-        "useBootstrapper": false,
         "exceptionDomain": "",
         "signingIdentity": null,
         "providerShortName": null,
@@ -55,11 +53,11 @@
     "windows": [
       {
         "title": "Andrew's Tauri App",
-        "width": 300,
-        "height": 300,
+        "width": 1400,
+        "height": 1000,
         "resizable": true,
         "fullscreen": false,
-        "decorations": false
+        "decorations": true
       }
     ],
     "security": {

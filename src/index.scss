@@ -6,10 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  text-align: center;
   min-height: 100vh;
-  display: grid;
-  justify-content: center;
   background: var(--background, white);
   color: var(--text-color, black);
 }
@@ -55,4 +52,9 @@ code {
     --background: black;
     --text-color: white;
   }
+}
+
+input {
+  width: 100%;
+  padding: 1em;
 }

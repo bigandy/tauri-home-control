@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import { Link, RouteProps } from "react-router-dom";
+import { RouteProps } from "react-router-dom";
 
-import { ReactComponent as HomeIcon } from "../icons/home.svg";
+import PageLayout from "layouts/PageLayout";
 
 import { useStore } from "../store";
 
@@ -18,15 +18,11 @@ const SettingsPage: React.FC<RouteProps> = () => {
   );
 
   return (
-    <>
-      <Link to="/">
-        <HomeIcon />
-      </Link>
+    <PageLayout>
       <h1>Settings</h1>
 
       <label htmlFor="timerMinutes"></label>
       <input
-        style={{ padding: 30, fontSize: 16 }}
         id="timerMinutes"
         type="number"
         min="1"
@@ -34,7 +30,7 @@ const SettingsPage: React.FC<RouteProps> = () => {
         value={timerMinutes}
         onChange={handleTimerMinutesChange}
       />
-    </>
+    </PageLayout>
   );
 };
 

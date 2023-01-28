@@ -1,94 +1,92 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
+import Button from "@mui/material/Button";
+import PageLayout from "layouts/PageLayout";
+import { Box, Typography, Grid } from "@mui/material";
 
-import { invoke } from "@tauri-apps/api/tauri";
+import { styled } from "@mui/material/styles";
 
-import Time from "../components/Time";
-import Controls from "../components/Controls";
+const StyledDiv = styled(Box)(() => ({
+  containerType: "inline-size",
+}));
 
-import { Link, RouteProps } from "react-router-dom";
+const StyledInner = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  color: theme.palette.success.main,
+  border: "1px solid",
+  padding: theme.spacing(3),
+  marginBlock: theme.spacing(3),
 
-import { ReactComponent as SettingsIcon } from "../icons/SettingsIcon.svg";
+  "@container (min-width: 500px)": {
+    display: "grid",
+    gridTemplateColumns: "1fr 3fr",
+  },
+}));
 
-const Homepage: React.FC<RouteProps> = () => {
-  const [playing, setPlaying] = useState(false);
+const TwoColumn = ({
+  left,
+  right,
+}: {
+  left: React.ReactNode;
+  right: React.ReactNode;
+}) => {
+  return (
+    <StyledDiv>
+      <StyledInner>
+        {left}
+        {right}
+      </StyledInner>
+    </StyledDiv>
+  );
+};
 
-  const [reset, setReset] = useState(false);
+const Homepage: React.FC = () => {
+  const [on, setOn] = React.useState(false);
 
-  useEffect(() => {
-    // add this JS snippet somewhere in your app
-    window.addEventListener("contextmenu", (e) => e.preventDefault());
-  }, []);
-
-  const handlePause = useCallback(() => {
-    setPlaying((p) => !p);
-  }, []);
-
-  const handleStop = useCallback(() => {
-    setPlaying(false);
-  }, []);
-
-  const handleReset = useCallback(() => {
-    setPlaying(false);
-    setReset(true);
-  }, []);
-
-  const turnOffApps = useCallback(() => {
-    if ("__TAURI_IPC__" in window) {
-      invoke("turn_off_apps");
-    }
-  }, []);
-
-  const turnOnApps = useCallback(() => {
-    if ("__TAURI_IPC__" in window) {
-      invoke("turn_on_apps");
-    }
-  }, []);
-
-  const toggleDarkMode = useCallback(() => {
-    if ("__TAURI_IPC__" in window) {
-      invoke("toggle_dark_mode");
-    }
-  }, []);
-
-  const handleStart = useCallback(() => {
-    setPlaying(true);
-    turnOffApps();
-  }, [turnOffApps]);
-
-  const onTimeEnd = useCallback(() => {
-    setPlaying(false);
-    setReset(true);
-    turnOnApps();
-    toggleDarkMode();
-  }, [toggleDarkMode, turnOnApps]);
+  const handleClick = () => {
+    setOn((o) => !o);
+  };
 
   return (
-    <>
-      <Link to="/settings">
-        <SettingsIcon />
-      </Link>
-      <h1>
-        <Time
-          playing={playing}
-          reset={reset}
-          handleReset={() => setReset(false)}
-          onTimeEnd={onTimeEnd}
-        />
-      </h1>
+    <PageLayout>
+      <h1>Hello</h1>
 
-      <Controls
-        playing={playing}
-        handleStart={handleStart}
-        handleStop={handleStop}
-        handleReset={handleReset}
-        handlePause={handlePause}
+      <Button variant="contained" onClick={handleClick}>
+        Turn {!on ? "on" : "off"}
+      </Button>
+
+      <TwoColumn
+        left={<Typography>Derp</Typography>}
+        right={
+          <Typography variant="poster">
+            Current State: {on ? "on" : "off"}
+          </Typography>
+        }
       />
 
-      <button onClick={turnOffApps}>Turn off Apps</button>
-      <button onClick={turnOnApps}>Turn On Apps</button>
+      <Grid container columnSpacing={2}>
+        <Grid item xs={3}>
+          <TwoColumn
+            left={<Typography>Derp</Typography>}
+            right={
+              <Typography variant="poster">
+                Current State: {on ? "on" : "off"}
+              </Typography>
+            }
+          />
+        </Grid>
 
-      <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
-    </>
+        <Grid item xs={9}>
+          <TwoColumn
+            left={<Typography>Derp</Typography>}
+            right={
+              <Typography variant="poster">
+                Current State: {on ? "on" : "off"}
+              </Typography>
+            }
+          />
+        </Grid>
+      </Grid>
+    </PageLayout>
   );
 };
 
